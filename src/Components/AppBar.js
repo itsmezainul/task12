@@ -3,11 +3,10 @@ import { Button, Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LogIn from "./LogIn";
 import Signup from "./SignUp";
+import { useNavigate } from "react-router-dom";
 
-function AppBar() {
+function AppBar({ login, setLogIn, signUp, setSignUp, isLogIn, setIsLogIn }) {
   const [navOpen, setNavOpen] = useState(false);
-  const [login, setLogIn] = useState(false);
-  const [signUp, setSignUp] = useState(false);
 
   function handleLogin() {
     setLogIn(true);
@@ -19,6 +18,8 @@ function AppBar() {
     setSignUp(true);
     setNavOpen(false);
   }
+
+  const navigate = useNavigate();
   return (
     <>
       <Navbar className="position-fixed w-100" style={{ zIndex: "1111111" }}>
@@ -26,20 +27,31 @@ function AppBar() {
           <Navbar.Brand>React</Navbar.Brand>
           <Nav className="d-none d-md-flex gap-3">
             <Link to="/">HOME</Link>
-            <Link to="/userlist">USER LIST</Link>
           </Nav>
-          <div className="d-none d-md-flex">
-            <Button className="rounded-5 me-3" onClick={handleLogin}>
-              Log In
-            </Button>
+          {!isLogIn ? (
+            <div className="d-none d-md-flex">
+              <Button className="rounded-5 me-3" onClick={handleLogin}>
+                Log In
+              </Button>
+              <Button
+                className="rounded-5"
+                variant="secondary"
+                onClick={handleSignup}
+              >
+                Sign Up
+              </Button>
+            </div>
+          ) : (
             <Button
               className="rounded-5"
-              variant="secondary"
-              onClick={handleSignup}
+              onClick={() => {
+                setIsLogIn(false);
+                navigate("/");
+              }}
             >
-              Sign Up
+              LogOut
             </Button>
-          </div>
+          )}
           <Button
             variant=""
             className="d-md-none"
@@ -55,7 +67,12 @@ function AppBar() {
           />
         </Container>
       </Navbar>
-      <LogIn show={login} onHide={setLogIn} setSignUp={setSignUp} />
+      <LogIn
+        show={login}
+        onHide={setLogIn}
+        setSignUp={setSignUp}
+        setIsLogIn={setIsLogIn}
+      />
       <Signup show={signUp} onHide={setSignUp} setLogIn={setLogIn} />
     </>
   );

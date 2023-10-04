@@ -1,7 +1,10 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function HomePage() {
+function HomePage({ setLogIn }) {
+  function handleClick() {
+    setLogIn(true);
+  }
   return (
     <main
       className="d-flex justify-content-center align-items-center text-center py-5"
@@ -21,11 +24,7 @@ function HomePage() {
           sed illo voluptates. Odio asperiores similique in beatae, suscipit
           delectus?
         </p>
-        <Button>
-          <Link style={{ color: "white" }} to="/userlist">
-            Lets Begin
-          </Link>
-        </Button>
+        <Button onClick={handleClick}>Lets Begin</Button>
       </div>
     </main>
   );

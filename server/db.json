@@ -1,0 +1,34 @@
+{
+  "userList": [
+    {
+      "confirmPassword": "123456789",
+      "password": "123456789",
+      "mobile": 9791212698,
+      "email": "zainulabdeenmak@gmail.com",
+      "age": 25,
+      "lName": "abdeen",
+      "fName": "zainul",
+      "id": 1
+    },
+    {
+      "confirmPassword": "123456789",
+      "password": "123456789",
+      "mobile": 9791212698,
+      "email": "zainulabdeenmak@gmail.com",
+      "age": 24,
+      "lName": "abdeen",
+      "fName": "zainul",
+      "id": 2
+    },
+    {
+      "confirmPassword": "123456789",
+      "password": "123456789",
+      "mobile": 9791212698,
+      "email": "zainulabdeenmech@gmail.com",
+      "age": 24,
+      "lName": "abdeen",
+      "fName": "zainul",
+      "id": 3
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-export default function LogIn({ show, onHide, setSignUp }) {
+export default function LogIn({ show, onHide, setSignUp, setIsLogIn }) {
+  const navigate = useNavigate();
   return (
     <Modal
       size="md"
@@ -14,6 +16,10 @@ export default function LogIn({ show, onHide, setSignUp }) {
         onSubmit={(e) => {
           e.preventDefault();
           onHide(false);
+          setTimeout(() => {
+            navigate("/userlist");
+            setIsLogIn(true);
+          }, 2000);
         }}
       >
         <Modal.Header className="d-flex flex-column">
@@ -40,7 +46,7 @@ export default function LogIn({ show, onHide, setSignUp }) {
               <i className="bi bi-envelope-at"></i>
             </InputGroup.Text>
             <Form.Control
-              placeholder="User Name / Email Address"
+              placeholder="Enter Email Address"
               area-aria-label="email id or user Name"
               required
             />
@@ -52,14 +58,11 @@ export default function LogIn({ show, onHide, setSignUp }) {
             <Form.Control
               placeholder="Enter Password "
               area-aria-label="enter password"
-              required
+              type="password"
             />
           </InputGroup>
 
-          <Button
-            className="d-block mx-auto mt-4 w-50 p-2 fs-4"
-            typeof="submit"
-          >
+          <Button className="d-block mx-auto mt-4 w-50 p-2 fs-4" type="submit">
             Log In
           </Button>
         </Modal.Body>{" "}
